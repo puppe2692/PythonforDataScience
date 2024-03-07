@@ -65,8 +65,9 @@ def main():
 		print("AssertionError: more than one argument is provided")
 		return 1
 	elif (len(sys.argv) < 2):
-		print("Please provide an argument")
-		return 1
+		object = input("What is the text to count?\n")
+		str_composition(object)
+		return 0
 	else:
 		str_composition(sys.argv[1])
 		return 0
