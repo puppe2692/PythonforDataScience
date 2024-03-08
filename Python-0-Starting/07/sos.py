@@ -22,7 +22,7 @@ def main():
 		return 1
 	else:
 		try:
-			if not sys.argv[1].isalnum():
+			if not all(c.isalnum() or c.isspace() for c in sys.argv[1]):
 				raise ValueError("AssertionError: the argument is not alphanumeric")
 		except ValueError as e:
 			print(e)
