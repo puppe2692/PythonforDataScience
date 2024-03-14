@@ -1,12 +1,12 @@
 def ft_filter(filter_func, iterable):
-	if filter_func == None:
-		new_list = [item for item in iterable if item]
-		for item in new_list:
-			yield item
-	else:
-		new_list = [item for item in iterable if filter_func(item) == True]
-		for item in new_list:
-			yield item
+    if filter_func is None:
+        new_list = [item for item in iterable if item]
+        for item in new_list:
+            yield item
+    else:
+        new_list = [item for item in iterable if filter_func(item) is True]
+        for item in new_list:
+            yield item
 
 
 # def is_even(n):

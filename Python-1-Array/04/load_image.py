@@ -4,8 +4,6 @@ from PIL import Image
 
 
 def ft_load(path: str) -> list:
-    '''Load the image from the given path
-        and return it as a list of list of list'''
     try:
         if not os.path.exists(path):
             raise ValueError("Unrecognize file path")

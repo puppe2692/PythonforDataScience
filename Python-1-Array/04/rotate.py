@@ -4,15 +4,23 @@ import matplotlib.pyplot as plt
 from load_image import ft_load
 
 
-def ft_zooming(array: list) -> list:
-    '''Zoom the image received'''
+def transposed_list(array: list) -> list:
+    '''Transpose the array received'''
+    transposed_matrix = [list(row) for row in zip(*array)]
+    return transposed_matrix
+
+
+def ft_rotate(array: list) -> list:
+    '''Rotate the image received'''
     np_array = np.array(array)
     new_array = np_array[100:500, 450:850, :1]
-    new_shape = new_array.shape
+    transposed_array = transposed_list(new_array)
+    np_transposed_array = np.array(transposed_array)
+    new_shape = np_transposed_array.shape
     print("my new shape is : " + str(new_shape))
-    print(new_array)
+    print(np_transposed_array)
 
-    new_image = new_array[:, :, 0]
+    new_image = np_transposed_array[:, :, 0]
     final_image = Image.fromarray(new_image)
     final_image = final_image.convert("L")
 
@@ -25,8 +33,8 @@ def ft_zooming(array: list) -> list:
     plt.imshow(pixel_array, cmap="gray")
 
     # Display the size information
-    plt.text(0, -20, f"Size: {size_x} x {size_y} pixels", fontsize=10,
-             color='black')
+    plt.text(0, -20, f"Size: {size_x} x {size_y} pixels",
+             fontsize=10, color='black')
 
     # Display the number of channels
     plt.text(0, -40, f"Channels: {len(channels)}", fontsize=10, color='black')
@@ -34,8 +42,8 @@ def ft_zooming(array: list) -> list:
     # Display the pixel content
     plt.text(size_x + 10, 10, "Pixel Content:", fontsize=10, color='black')
     for i, channel in enumerate(channels):
-        plt.text(size_x + 10, 30 + i * 20, f"Channel {i + 1}: {channel}",
-                 fontsize=10, color='black')
+        plt.text(size_x + 10, 30 + i * 20,
+                 f"Channel {i + 1}: {channel}", fontsize=10, color='black')
 
     # Display the scale on the x and y axis
     plt.xticks(np.arange(0, size_x, 50))
@@ -49,7 +57,7 @@ def main():
     if data_img is None:
         return
     print(data_img)
-    ft_zooming(data_img)
+    ft_rotate(data_img)
 
 
 if (__name__ == "__main__"):
